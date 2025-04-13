@@ -1,7 +1,12 @@
 export type Element = "Jin"| "Mu" | "Shui" | "Huo" | "Tu" | "Yin"| "Yang"| "Qi"
-export type Building = "Mine"| "Forest"| "Lake"| "Volcan"| "Field"
+export type BuildingType = "Mine"| "Forest"| "Lake"| "Volcan"| "Field"
 export type ProductionRessource = "Jin"| "Mu"| "Shui"| "Huo"| "Tu"
 export type General  = "Yin"| "Yang"
+export type Sanctuary = "Sanctuary1" | "Sanctuary2" | "Sanctuary3" | "Sanctuary4"
+
+export enum VpType {
+    GROSS, COMBO, PAIR, NONE
+}
 
 export type GrossVP = {
     score: number
@@ -9,12 +14,12 @@ export type GrossVP = {
 
 export type ComboVP = {
     multiplicator: number,
-    building: Building | General,
+    building: BuildingType | General,
 }
 
 export type PairVP = {
-    building1: Building
-    building2: Building
+    building1: BuildingType
+    building2: BuildingType
 }
 
 export type Card = {
@@ -24,14 +29,16 @@ export type Card = {
     produces: Partial<Record<Element, number>>;
     vp?: GrossVP | ComboVP| PairVP
     constructionBonus: Element;
-    type: Building
+    type: BuildingType,
+    vpType: VpType
 };
 
 export type Player = {
     id: string;
     name: string;
     draftedCards: Card[];
-    sanctuary: Card[];
+    sanctuaryCards: Card[];
+    sanctuary: Sanctuary;
     production: Partial<Record<ProductionRessource, number>>;
     ownResources: Record<Element, number>
 };

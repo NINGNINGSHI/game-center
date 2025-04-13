@@ -8,8 +8,8 @@ export default function RoundCounter(props: { gameState: GameState }) {
             <p>Phase {props.gameState.phase}</p>
             <ul>
                 {
-                    props.gameState.players.map((player: Player) => {
-                        return <li>{player.name}</li>
+                    props.gameState.players.map((player: Player, index: number) => {
+                        return <li key={index}>{player.name}</li>
                     })
                 }
             </ul>
