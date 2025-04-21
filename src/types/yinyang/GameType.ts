@@ -1,7 +1,7 @@
-export type Element = "Jin"| "Mu" | "Shui" | "Huo" | "Tu" | "Yin"| "Yang"| "Qi"
-export type BuildingType = "Mine"| "Forest"| "Lake"| "Volcan"| "Field"
-export type ProductionRessource = "Jin"| "Mu"| "Shui"| "Huo"| "Tu"
-export type General  = "Yin"| "Yang"
+export type Element = "Jin" | "Mu" | "Shui" | "Huo" | "Tu" | "Yin" | "Yang" | "Qi"
+export type BuildingType = "Mine" | "Forest" | "Lake" | "Volcan" | "Field"
+export type ProductionRessource = "Jin" | "Mu" | "Shui" | "Huo" | "Tu"
+export type General = "Yin" | "Yang"
 export type Sanctuary = "Sanctuary1" | "Sanctuary2" | "Sanctuary3" | "Sanctuary4"
 
 export enum VpType {
@@ -27,7 +27,7 @@ export type Card = {
     name: string;
     cost: Partial<Record<Element, number>>;
     produces: Partial<Record<Element, number>>;
-    vp?: GrossVP | ComboVP| PairVP
+    vp?: GrossVP | ComboVP | PairVP
     constructionBonus: Element;
     type: BuildingType,
     vpType: VpType
@@ -37,7 +37,9 @@ export type Player = {
     id: string;
     name: string;
     draftedCards: Card[];
+    draftingCards: Card[];
     sanctuaryCards: Card[];
+    builtSanctuaryCards: Card[];
     sanctuary: Sanctuary;
     production: Partial<Record<ProductionRessource, number>>;
     ownResources: Record<Element, number>
@@ -45,7 +47,7 @@ export type Player = {
 
 export type GameState = {
     round: number;
-    phase: "draft" | "production" | "construction";
+    phase: "draft" | "planning" | "production" | "construction";
     players: Player[];
     activePlayer: Player;
 }

@@ -3,7 +3,7 @@ import ProductionStepper from "./ProductionStepper.tsx";
 
 export default function RoundCounter(props: { gameState: GameState }) {
     return (
-        <div className="flex justify-between">
+        <div className="grid grid-cols-6 gap-4">
             <p>Round {props.gameState.round}/4</p>
             <p>Phase {props.gameState.phase}</p>
             <ul>
@@ -13,7 +13,9 @@ export default function RoundCounter(props: { gameState: GameState }) {
                     })
                 }
             </ul>
-            <ProductionStepper></ProductionStepper>
+            <div className="grid col-span-3 gap-4">
+                <ProductionStepper></ProductionStepper>
+            </div>
         </div>
     )
 }

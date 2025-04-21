@@ -150,8 +150,10 @@ export const hand2: Card[] = [
 export const player1: Player = {
     id: "p1",
     name: "Aoki",
-    draftedCards: hand1,
+    draftingCards: hand1,
+    draftedCards: hand2,
     sanctuaryCards: hand2,
+    builtSanctuaryCards: hand1,
     production: {Jin: 1, Shui: 1},
     ownResources: {
         Jin: 1, Mu: 0, Shui: 1, Huo: 0, Tu: 0, Yin: 0, Yang: 0, Qi: 0,
@@ -162,8 +164,10 @@ export const player1: Player = {
 export const player2: Player = {
     id: "p2",
     name: "Kaen",
+    draftingCards: hand1,
     draftedCards: hand2,
     sanctuaryCards: hand1,
+    builtSanctuaryCards: hand2,
     production: {Huo: 1, Tu: 1},
     ownResources: {
         Jin: 0, Mu: 1, Shui: 0, Huo: 2, Tu: 1, Yin: 0, Yang: 0, Qi: 0,

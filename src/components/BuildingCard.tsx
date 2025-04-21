@@ -1,26 +1,30 @@
 import {Card, ComboVP, GrossVP, PairVP, VpType} from "../types/yinyang/GameType.ts";
+import * as React from "react";
 
-export default function BuildingCard(props: { card: Card }) {
+export default function BuildingCard(props: {
+    card: Card;
+    onDragStart?: (e: React.DragEvent, card: Card) => void;
+}) {
     const renderVP = () => {
         const vp = props.card.vp;
-        if (!vp) {
-            return "";
-        }
+        if (!vp) return "";
         switch (props.card.vpType) {
-            case VpType.GROSS :
-                return `${(vp as GrossVP).score}`
-            case VpType.COMBO :
-                return `${(vp as ComboVP).multiplicator} x ${(vp as ComboVP).building}`
-            case VpType.PAIR :
-                return `${(vp as PairVP).building1} & ${(vp as PairVP).building2}`
-            default :
-                return ""
+            case VpType.GROSS:
+                return `${(vp as GrossVP).score}`;
+            case VpType.COMBO:
+                return `${(vp as ComboVP).multiplicator} x ${(vp as ComboVP).building}`;
+            case VpType.PAIR:
+                return `${(vp as PairVP).building1} & ${(vp as PairVP).building2}`;
+            default:
+                return "";
         }
     };
 
     return (
         <div
-            className="bg-white text-black rounded-xl p-4 shadow-md w-64 cursor-pointer hover:scale-105 transition"
+            className="bg-white text-black rounded-xl p-4 shadow-md max-w-55 cursor-pointer hover:scale-105 transition"
+            draggable
+            onDragStart={(e) => props.onDragStart?.(e, props.card)}
         >
             <h3 className="text-lg font-bold mb-2">{props.card.name}</h3>
             <p className="text-sm text-gray-700 mb-1">Type: {props.card.type}</p>
